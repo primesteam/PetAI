@@ -1,0 +1,16 @@
+Vars
+RT = 10s
+
+Device side
+1. Log sensor values every RT values
+2. Ask server about feeder reload
+3. Upload image and
+4. QR code including the device ID for donation origin
+
+Server side
+
+Monitoring
+1. Request to get all devices
+2. Request to get device info
+3. Request to get image list
+4. Request to track images
