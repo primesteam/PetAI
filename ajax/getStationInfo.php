@@ -59,6 +59,6 @@ $stationInfo->currentState = [
     'voltage' => $logs->voltage
 ];
 
-echo "<pre>";
-print_r($stationInfo);
-echo JSON_ENCODE($stationInfo);
+//echo "<pre>";
+//print_r($stationInfo);
+echo json_encode($stationInfo);
