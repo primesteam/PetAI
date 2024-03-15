@@ -1,39 +1,49 @@
 <?php
+// Include Database
 require '../private/Database.php';
 
+// Check if code exists
 if (!isset($_GET['code'])) return print "No code";
-$code = $_GET['code'];
 
+// Connect to Database and get station's info
 $db = Database::connect();
 $stmt = $db->prepare("SELECT * FROM petai.feeder WHERE code=:code");
-$stmt->bindParam(':code', $code);
+$stmt->bindParam(':code', $_GET['code']);
 $stmt->execute();
 $station = $stmt->fetchObject();
 
+// Set station ID
 $id = $station->id;
 
+// Get station's donates number
 $stmt = $db->prepare("SELECT COUNT(*) FROM petai.donate WHERE feeder=:id");
 $stmt->bindParam(':id', $id);
 $stmt->execute();
 $donates = $stmt->fetchColumn();
 
+// Get station's photos number
 $stmt = $db->prepare("SELECT COUNT(*) FROM petai.photo WHERE feeder=:id");
 $stmt->bindParam(':id', $id);
 $stmt->execute();
 $photos = $stmt->fetchColumn();
 
+// Get station's logs
 $stmt = $db->prepare("SELECT * FROM petai.logs WHERE feeder=:id ORDER BY created DESC");
 $stmt->bindParam(':id', $id);
 $stmt->execute();
 $logs = $stmt->fetchObject();
 
+// Get station's data
 $stmt = $db->prepare("SELECT * FROM petai.feeder_data WHERE feeder=:id");
 $stmt->bindParam(':id', $id);
 $stmt->execute();
 $data = $stmt->fetchObject();
 
+// Create stationIndo instance
 $stationInfo = new stdClass();
-// Station Data
+
+// Associate Station Data
+// Station Info
 $stationInfo->id = $station->id;
 $stationInfo->created = $station->created;
 $stationInfo->code = $station->code;
@@ -59,6 +69,5 @@ $stationInfo->currentState = [
     'voltage' => $logs->voltage
 ];
 
-//echo "<pre>";
-//print_r($stationInfo);
+// Return station infos as JSON
 echo json_encode($stationInfo);

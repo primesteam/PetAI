@@ -27,10 +27,16 @@
     <tr>
         <th>ID</th>
         <th>Code</th>
-        <th>Location</th>
-        <th>Capacity (L)</th>
-        <th>Capacity Time</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Status</th>
+        <th>Tank Topups</th>
+        <th>Refills Total</th>
+        <th>Refills till last Topup</th>
         <th>Temperature</th>
+        <th>Humidity</th>
+        <th>Tank Level</th>
+        <th>Plate Level</th>
         <th>Voltage</th>
         <th>Last Update</th>
         <th>JSON</th>
@@ -52,10 +58,16 @@
         $data = $stmt->fetchAll(); ?>
         <td><?php echo $feeder['id'] ?></td>
         <td><?php echo $feeder['code'] ?></td>
-        <td><?php echo $feeder['location'] ?></td>
-        <td><?php echo $data[0]['capacity'] ?></td>
-        <td><?php echo $data[0]['created'] ?></td>
+        <td><?php echo $feeder['latitude'] ?></td>
+        <td><?php echo $feeder['longitude'] ?></td>
+        <td><?php echo $feeder['status'] ?></td>
+        <td><?php echo $data[0]['tankTopups'] ?></td>
+        <td><?php echo $data[0]['refillsTotal'] ?></td>
+        <td><?php echo $data[0]['refills'] ?></td>
         <td><?php echo $logs[0]['temperature'] ?></td>
+        <td><?php echo $logs[0]['humidity'] ?></td>
+        <td><?php echo $logs[0]['tankLevel'] ?></td>
+        <td><?php echo $logs[0]['plateLevel'] ?></td>
         <td><?php echo $logs[0]['voltage'] ?></td>
         <td><?php echo $logs[0]['created'] ?></td>
         <td><a href="https://petai.labaki.gr/ajax/getfeeder.php?code=<?php echo $feeder['code'] ?>" target="_blank">New Windows</a></td>
