@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
 </head>
 <body>
 <div class="container" style="margin-top:5%;">

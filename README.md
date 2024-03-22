@@ -28,14 +28,14 @@ Here you can notice the 2 main boards used to make this project working
 
 |           Arduino Board            |           ESP32 - CAM            |
 |:----------------------------------:|:--------------------------------:|
-| ![arduino-uno](photos/arduino.jpg) | ![esp32cam](photos/esp32cam.jpg) |
+| ![arduino-uno](assets/github/arduino.jpg) | ![esp32cam](assets/github/esp32cam.jpg) |
 
 ### Sensors
 |            Gravity Ultrasonic Sensor             | Gravity Temperature & Humidity Sensor |
 |:------------------------------------------------:|:-------------------------------------:|
-| ![ultrasonic-sensor](photos/dfrobot-sen0388.jpg) |  ![DHT22](photos/gravity-dht22.jpg)   |
+| ![ultrasonic-sensor](assets/github/dfrobot-sen0388.jpg) |  ![DHT22](assets/github/gravity-dht22.jpg)   |
 
 ### Components
 |           Nema 17            |   TB6560 - Stepper Driver    |            16x4 LCD             |
 |:----------------------------:|:----------------------------:|:-------------------------------:|
-| ![nema17](photos/nema17.jpg) | ![TB6560](photos/tb6560.jpg) | ![16x4lcd](photos/16x4-lcd.jpg) |
+| ![nema17](assets/github/nema17.jpg) | ![TB6560](assets/github/tb6560.jpg) | ![16x4lcd](assets/github/16x4-lcd.jpg) |

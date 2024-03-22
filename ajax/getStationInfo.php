@@ -21,7 +21,7 @@ $stmt->bindParam(':id', $id);
 $stmt->execute();
 $donates = $stmt->fetchColumn();
 
-// Get station's photos number
+// Get station's github number
 $stmt = $db->prepare("SELECT COUNT(*) FROM petai.photo WHERE feeder=:id");
 $stmt->bindParam(':id', $id);
 $stmt->execute();

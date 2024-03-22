@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
     <title>PetAI Animal Gallery</title>
 </head>
 <body style="background-color:#202125;">
