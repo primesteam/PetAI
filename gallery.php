@@ -1,57 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <title>Petai Photo Gallery</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .flex-container {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .flex-container > div {
-            text-align: center;
-            margin: 10px;
-        }
-    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PetAI Animal Gallery</title>
 </head>
-<body>
-    <h2>Petai Photo Gallery</h2>
-    <?php
-    // Image extensions
-    $image_extensions = array("png","jpg","jpeg");
+<body style="background-color:#202125;" id="myESP32CAMPhotos">
+<script>
+    let totalphotos = 0;
+    let last_totalphotos = 0;
 
-    // Check delete HTTP GET request - remove images
-    if(isset($_GET["delete"])){
-        $imageFileType = strtolower(pathinfo($_GET["delete"],PATHINFO_EXTENSION));
-        if (file_exists($_GET["delete"]) && ($imageFileType == "jpg" ||  $imageFileType == "png" ||  $imageFileType == "jpeg") ) {
-            echo "File found and deleted: " .  $_GET["delete"];
-            unlink($_GET["delete"]);
-        }
-        else {
-            echo 'File not found - <a href="gallery.php">refresh</a>';
+    loadPhotos();
+
+    const timer_1 = setInterval(myTimer_1, 2000);
+
+    function myTimer_1() {
+        getTotalPhotos();
+        if(last_totalphotos !== totalphotos) {
+            last_totalphotos = totalphotos;
+
+            loadPhotos();
         }
     }
-    // Target directory
-    $dir = 'uploads/';
-    if (is_dir($dir)){
-        echo '<div class="flex-container">';
-        $count = 1;
-        $files = scandir($dir);
-        rsort($files);
-        foreach ($files as $file) {
-            if ($file != '.' && $file != '..') {?>
-                <div>
-                    <p><a href="gallery.php?delete=<?php echo $dir . $file; ?>">Delete file</a> - <?php echo $file; ?></p>
-                    <a href="<?php echo $dir . $file; ?>">
-                        <img src="<?php echo $dir . $file; ?>" style="width: 350px;" alt="" title=""/>
-                    </a>
-                </div>
-                <?php
-                $count++;
+
+    function getTotalPhotos() {
+        let xmlhttp;
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                totalphotos = this.responseText;
             }
-        }
-        if($count==1) { echo "<p>No images found</p>"; }
+        };
+        xmlhttp.open("POST","CountImageFile.php",true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send("cmd=GTP");
     }
-    ?>
+
+    function loadPhotos() {
+        let xmlhttp;
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                document.getElementById("myESP32CAMPhotos").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET","loadPhotos.php",true);
+        xmlhttp.send();
+    }
+</script>
 </body>
 </html>

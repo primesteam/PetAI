@@ -4,22 +4,23 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery-3.6.0.min.js"></script>
+    <title>PetAI Animal Gallery</title>
 </head>
 <body style="background-color:#202125;">
 <div class="container" style="padding-top:30px;">
     <div class="d-flex justify-content-center">
-        <h1 style="color:#FEFFFF;">ESP32-CAM Captured Photo Gallery</h1>
+        <h1 style="color:#FEFFFF;">PetAI Animal Gallery</h1>
     </div>
-    <hr class="mt-2 mb-5" style="height:2px;background-color:#FFFFFF";>
+    <hr class="mt-2 mb-5" style="height:2px;background-color:#FFFFFF" ;>
 
     <?php
     // Image extensions.
-    $image_extensions = array("png","jpg","jpeg","gif");
+    $image_extensions = array("png", "jpg", "jpeg", "gif");
 
     // Check delete HTTP GET request - remove images.
-    if(isset($_GET["delete"])){
-        $imageFileType = strtolower(pathinfo($_GET["delete"],PATHINFO_EXTENSION));
-        if (file_exists($_GET["delete"]) && ($imageFileType == "jpg" ||  $imageFileType == "png" ||  $imageFileType == "jpeg") ) {
+    if (isset($_GET["delete"])) {
+        $imageFileType = strtolower(pathinfo($_GET["delete"], PATHINFO_EXTENSION));
+        if (file_exists($_GET["delete"]) && ($imageFileType == "jpg" || $imageFileType == "png" || $imageFileType == "jpeg")) {
             unlink($_GET["delete"]);
             echo "<script>
             $(document).ready(function(){
@@ -35,7 +36,7 @@
         <?php
         // Target directory.
         $dir = 'uploads/';
-        if (is_dir($dir)){
+        if (is_dir($dir)) {
             $count = 1;
             $files = scandir($dir);
             rsort($files);
@@ -49,21 +50,24 @@
                             </a>
                         </div>
                         <div class="row justify-content-end">
-                            <center>
-                                <div class="col md-8">
-                                    <p style="color:#FEFFFF;"><?php echo $file; ?></p>
-                                </div>
-                                <div class="col md-4">
-                                    <a href="loadPhotos.php?delete=<?php echo $dir . $file; ?>" class="btn btn-danger btn-sm">Delete</a>
-                                </div>
-                            </center>
+
+                            <div class="col md-8">
+                                <p style="color:#FEFFFF;"><?php echo $file; ?></p>
+                            </div>
+                            <div class="col md-4">
+                                <a href="loadPhotos.php?delete=<?php echo $dir . $file; ?>"
+                                   class="btn btn-danger btn-sm">Delete</a>
+                            </div>
+
                         </div>
                     </div>
                     <?php
                     $count++;
                 }
             }
-            if($count==1) { echo "<p style='color:#FEFFFF;'>No images found</p>"; }
+            if ($count == 1) {
+                echo "<p style='color:#FEFFFF;text-align: center'>No images found</p>";
+            }
         }
         ?>
     </div>
@@ -77,10 +81,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Successfully delete image file <b><?php $path_parts = pathinfo($_GET["delete"],PATHINFO_BASENAME) ; echo $path_parts; ?> </b>
+                    Successfully delete image file <b><?php $path_parts = pathinfo($_GET["delete"], PATHINFO_BASENAME);
+                        echo $path_parts; ?> </b>
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-primary" href="index.php" role="button">OK</a>
+                    <a class="btn btn-primary" href="gallery.php" role="button">OK</a>
                 </div>
             </div>
         </div>
@@ -95,10 +100,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Something wrong while deleting file <?php $path_parts = pathinfo($_GET["delete"],PATHINFO_BASENAME) ; echo $path_parts; ?>
+                    Something wrong while deleting
+                    file <?php $path_parts = pathinfo($_GET["delete"], PATHINFO_BASENAME);
+                    echo $path_parts; ?>
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-secondary" href="index.php" role="button">OK</a>
+                    <a class="btn btn-secondary" href="gallery.php" role="button">OK</a>
                 </div>
             </div>
         </div>

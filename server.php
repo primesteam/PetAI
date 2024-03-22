@@ -1,5 +1,5 @@
 <?php
-require 'ajax/connect.php';
+require 'private/Database.php';
 //print_r($_GET);
 
 if (!isset($_GET['code'])) return print "No code";

@@ -1,28 +1,37 @@
-<?php include_once "ajax/connect.php" ?>
-<style>
-    #feeders {
-        font-family: Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
+<?php
+require 'private/Database.php';
+$db = Database::connect();
+?>
+<!doctype html>
+<html lang="en">
+<head>
+    <style>
+        #feeders {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
 
-    #feeders td, #feeders th {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
+        #feeders td, #feeders th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
 
-    #feeders tr:nth-child(even){background-color: #f2f2f2;}
+        #feeders tr:nth-child(even){background-color: #f2f2f2;}
 
-    #feeders tr:hover {background-color: #ddd;}
+        #feeders tr:hover {background-color: #ddd;}
 
-    #feeders th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: left;
-        background-color: #04AA6D;
-        color: white;
-    }
-</style>
+        #feeders th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+    </style>
+    <title>PetAI Animal Gallery</title>
+</head>
+<body>
 <table id="feeders">
     <tr>
         <th>ID</th>
@@ -73,3 +82,5 @@
         <td><a href="https://petai.labaki.gr/ajax/getfeeder.php?code=<?php echo $feeder['code'] ?>" target="_blank">New Windows</a></td>
     <?php } ?>
 </table>
+</body>
+</html>
