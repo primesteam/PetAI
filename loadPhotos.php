@@ -34,7 +34,7 @@
     <div class="row text-center text-lg-start">
         <?php
         // Target directory.
-        $dir = 'photos/';
+        $dir = 'uploads/';
         if (is_dir($dir)){
             $count = 1;
             $files = scandir($dir);

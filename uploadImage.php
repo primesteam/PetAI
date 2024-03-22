@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('Europe/Athens');  //--> Adjust to your time zone.
-$target_dir = "photos/"; //--> Folder to store images.
+$target_dir = "uploads/"; //--> Folder to store images.
 $date = new DateTime(); //--> this returns the current date time.
 $date_string = $date->format('Y-m-d_His ');
 $target_file = $target_dir . $date_string. basename($_FILES["imageFile"]["name"]);
