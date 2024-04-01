@@ -2,7 +2,7 @@
 require 'private/Database.php';
 
 // Check for code
-if (!isset($_GET['code'])) $code = $_GET['code'];
+if (isset($_GET['code'])) $code = $_GET['code'];
 else return print "No code";
 
 // Check for action
