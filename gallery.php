@@ -24,22 +24,14 @@
     }
 
     function getTotalPhotos() {
-        let xmlhttp;
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState === 4 && this.status === 200) {
-                totalphotos = this.responseText;
-            }
-        };
-        xmlhttp.open("POST","CountImageFile.php",true);
-        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xmlhttp.send("cmd=GTP");
+        <?php
+        // Get station's photos number
+        require 'private/Database.php';
+        $db = Database::connect();
+        $stmt = $db->prepare("SELECT COUNT(*) FROM petai.photo WHERE feeder=:id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute(); ?>
+        totalphotos = <?php $stmt->fetchColumn() ?>
     }
 
     function loadPhotos() {

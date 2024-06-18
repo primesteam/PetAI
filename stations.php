@@ -17,9 +17,13 @@ $db = Database::connect();
             padding: 8px;
         }
 
-        #feeders tr:nth-child(even){background-color: #f2f2f2;}
+        #feeders tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
 
-        #feeders tr:hover {background-color: #ddd;}
+        #feeders tr:hover {
+            background-color: #ddd;
+        }
 
         #feeders th {
             padding-top: 12px;
@@ -65,21 +69,24 @@ $db = Database::connect();
         $stmt->bindParam(':id', $feeder['id']);
         $stmt->execute();
         $data = $stmt->fetchAll(); ?>
-        <td><?php echo $feeder['id'] ?></td>
-        <td><?php echo $feeder['code'] ?></td>
-        <td><?php echo $feeder['latitude'] ?></td>
-        <td><?php echo $feeder['longitude'] ?></td>
-        <td><?php echo $feeder['status'] ?></td>
-        <td><?php echo $data[0]['tankTopups'] ?></td>
-        <td><?php echo $data[0]['refillsTotal'] ?></td>
-        <td><?php echo $data[0]['refills'] ?></td>
-        <td><?php echo $logs[0]['temperature'] ?></td>
-        <td><?php echo $logs[0]['humidity'] ?></td>
-        <td><?php echo $logs[0]['tankLevel'] ?></td>
-        <td><?php echo $logs[0]['plateLevel'] ?></td>
-        <td><?php echo $logs[0]['voltage'] ?></td>
-        <td><?php echo $logs[0]['created'] ?></td>
-        <td><a href="https://petai.labaki.gr/ajax/getfeeder.php?code=<?php echo $feeder['code'] ?>" target="_blank">New Windows</a></td>
+        <tr>
+            <td><?php echo $feeder['id'] ?></td>
+            <td><?php echo $feeder['code'] ?></td>
+            <td><?php echo $feeder['latitude'] ?></td>
+            <td><?php echo $feeder['longitude'] ?></td>
+            <td><?php echo $feeder['status'] ?></td>
+            <td><?php echo $data[0]['tankTopups'] ?></td>
+            <td><?php echo $data[0]['refillsTotal'] ?></td>
+            <td><?php echo $data[0]['refills'] ?></td>
+            <td><?php echo $logs[0]['temperature'] ?></td>
+            <td><?php echo $logs[0]['humidity'] ?></td>
+            <td><?php echo $logs[0]['tankLevel'] ?></td>
+            <td><?php echo $logs[0]['plateLevel'] ?></td>
+            <td><?php echo $logs[0]['voltage'] ?></td>
+            <td><?php echo $logs[0]['created'] ?></td>
+            <td><a href="https://petai.labaki.gr/ajax/getfeeder.php?code=<?php echo $feeder['code'] ?>" target="_blank">New
+                    Windows</a></td>
+        </tr>
     <?php } ?>
 </table>
 </body>

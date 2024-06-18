@@ -44,7 +44,7 @@ $stationInfo = new stdClass();
 
 // Associate Station Data
 // Station Info
-$stationInfo->id = $station->id;
+$stationInfo->id = strval($station->id);
 $stationInfo->created = $station->created;
 $stationInfo->code = $station->code;
 $stationInfo->location = [
@@ -54,19 +54,19 @@ $stationInfo->location = [
 $stationInfo->status = $station->status;
 
 // Counters
-$stationInfo->donates = $donates;
-$stationInfo->images = $photos;
-$stationInfo->tankTopups = $data->tankTopups;
-$stationInfo->refillsTotal = $data->refillsTotal;
+$stationInfo->donates = strval($donates);
+$stationInfo->images = strval($photos);
+$stationInfo->tankTopups = strval($data->tankTopups);
+$stationInfo->refillsTotal = strval($data->refillsTotal);
 
 // Data array
-$stationInfo->refills = $data->refills;
+$stationInfo->refills = strval($data->refills);
 $stationInfo->currentState = [
-    'temperature' => $logs->temperature,
-    'humidity' => $logs->humidity,
-    'tankLevel' => $logs->tankLevel,
-    'plateLevel' => $logs->plateLevel,
-    'voltage' => $logs->voltage
+    'temperature' => strval($logs->temperature),
+    'humidity' => strval($logs->humidity),
+    'tankLevel' => strval($logs->tankLevel),
+    'plateLevel' => strval($logs->plateLevel),
+    'voltage' => strval($logs->voltage)
 ];
 
 // Return station infos as JSON
